@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Movies from './components/Movies/Movies';
+import MovieHunter from './components/MovieHunter/MovieHunter';
 import './App.css';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
       <Routes>
         <Route path='*' element={<Navigate to='movies' />} />
         <Route path='/' element={<Navigate to='movies' />} />
-        <Route path='movies' element={<Movies />} />
+        <Route path='movies' element={<MovieHunter />} />
       </Routes>
     </BrowserRouter>
   );
