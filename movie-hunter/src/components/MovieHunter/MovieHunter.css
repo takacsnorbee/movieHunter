@@ -1,0 +1,34 @@
+.movie-hunter-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 600px;
+    width: 80%;
+    height: 100%;
+}
+
+.movie-hunter-container section:first-child {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    justify-content: center;
+    width: 100%;
+}
+
+.movie-hunter-container section:last-child {
+    height: calc(100vh - 500px);
+    min-height: 300px;
+    overflow: auto;
+}
+
+.movie-hunter-container h1 {
+    font-weight: 700;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.movie-hunter-container aside {
+    height: 200px;
+    background-color: bisque;
+    margin: 2rem 0;
+}
