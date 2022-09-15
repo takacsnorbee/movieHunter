@@ -1,0 +1,17 @@
+.error-comp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.error-comp h1 {
+    font-size: 3rem;
+    color: brown;
+    text-decoration: underline;
+}
+
+.error-comp button {
+    font-size: 1.7rem;
+
+}

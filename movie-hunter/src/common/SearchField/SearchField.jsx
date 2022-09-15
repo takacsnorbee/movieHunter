@@ -1,7 +1,13 @@
 import './SearchField.css';
 
-const SearchField = ({ handleSearchField, className }) => {
-  return <input className={className} onChange={handleSearchField} />;
+const SearchField = ({ handleSearchField, className, handleEnterKey }) => {
+  return (
+    <input
+      className={className}
+      onChange={handleSearchField}
+      onKeyDown={handleEnterKey}
+    />
+  );
 };
 
 export default SearchField;

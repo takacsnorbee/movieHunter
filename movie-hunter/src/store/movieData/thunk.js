@@ -27,7 +27,7 @@ export const fetchMovieData = (title) => async (dispatch) => {
       genre: resultIMDB.Genre,
       actors: resultIMDB.Actors,
       imdbID: resultIMDB.imdbID,
-      wikiID: checkWikiPageID.length > 0 ? checkWikiPageID[0].pageid : 0,
+      wikiID: checkWikiPageID.length > 0 ? checkWikiPageID[0].pageid : '',
       imdbRatings: resultIMDB.imdbRating,
       released: resultIMDB.Released,
       details: resultIMDB.Plot,

@@ -1,15 +1,6 @@
 import './MovieTile.css';
-import { fetchMovieData } from '../../store/movieData/thunk';
-import { useDispatch } from 'react-redux';
 
-const MovieTile = ({ movie }) => {
-  const dispatch = useDispatch();
-
-  const handleClicOnTile = (title) => {
-    console.log('tile clicked : ', title);
-    dispatch(fetchMovieData(title));
-  };
-
+const MovieTile = ({ movie, handleClicOnTile }) => {
   return (
     <div
       className='movie-tile-wrapper'

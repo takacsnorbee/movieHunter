@@ -32,3 +32,7 @@
     background-color: bisque;
     margin: 2rem 0;
 }
+
+.movie-hunter-container section:first-child h1 {
+    font-size: 2rem;
+}

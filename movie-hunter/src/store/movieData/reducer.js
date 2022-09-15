@@ -5,7 +5,7 @@ const initialMovieData = {
   genre: '',
   actors: '',
   imdbID: '',
-  wikiID: 0,
+  wikiID: '',
   imdbRatings: '',
   released: '',
   details: '',
