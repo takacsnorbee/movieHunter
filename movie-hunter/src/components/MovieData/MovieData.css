@@ -16,3 +16,12 @@
     width: 30%;
     margin: 0!important;
 }
+
+.close-icon-wrapper {
+    display: flex;
+    justify-content: end;
+}
+
+.close-icon-action-wrapper {
+    width: fit-content!important;
+}

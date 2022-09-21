@@ -1,5 +1,5 @@
 import { startLoaderAction, stopLoaderAction } from '../loader/actions';
-import { fetchMovieDataAction, clearMovieDataAction } from './actions';
+import { fetchMovieDataAction } from './actions';
 
 export const fetchMovieData = (title) => async (dispatch) => {
   dispatch(startLoaderAction());
@@ -17,7 +17,7 @@ export const fetchMovieData = (title) => async (dispatch) => {
   )
     .then((res) => res.json())
     .catch((error) => console.log(error));
-
+  console.log(resultIMDB);
   if (resultIMDB.Title) {
     const checkWikiPageID = resultWiki.query.search.filter(
       (movie) => movie.title === resultIMDB.Title

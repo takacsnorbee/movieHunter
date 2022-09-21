@@ -7,7 +7,7 @@ import Error from '../../common/Error/Error';
 import './MovieHunter.css';
 import { useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
-import { filmQuery } from '../../QueryHelper/queryHelper';
+import { filmQuery, relatedFilmQuery } from '../../QueryHelper/queryHelper';
 import { useSelector } from 'react-redux';
 import { getLoader, getMovieData } from '../../store/selectors';
 import { clearMovieDataAction } from '../../store/movieData/actions';
@@ -19,15 +19,24 @@ const MovieHunter = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getLoader);
   const movieData = useSelector(getMovieData);
+  const [showRelatedList, setShowRelatedList] = useState(false);
   const [hideDetails, setHideDetails] = useState(false);
   const [movieTitle, setMovieTitle] = useState('');
   const [queryFeeder, setQueryFeeder] = useState('');
+  const [relatedQueryFeeder, setRelatedQueryFeeder] = useState(0);
   const [movies, setMovies] = useState([]);
+  const [relatedMovies, setRelatedMovies] = useState([]);
   const [getMovies, { loading, error }] = useLazyQuery(filmQuery(queryFeeder), {
     onCompleted: (data) => {
       setMovies(data.searchMovies);
     },
   });
+  const [getRelatedMovies, { loading: relatedLoading, error: relatedError }] =
+    useLazyQuery(relatedFilmQuery(relatedQueryFeeder), {
+      onCompleted: (data) => {
+        setRelatedMovies(data.discoverMovies);
+      },
+    });
 
   useEffect(() => {
     handleHideData();
@@ -52,17 +61,23 @@ const MovieHunter = () => {
     dispatch(clearMovieDataAction());
   };
 
-  const handleClicOnTile = (title) => {
+  const handleClicOnTile = (title, genres) => {
+    setRelatedQueryFeeder(genres.map((genre) => genre.id));
     dispatch(fetchMovieData(title));
     setHideDetails(true);
   };
 
+  const handleShowRelatedBtn = () => {
+    getRelatedMovies();
+    setShowRelatedList((prevState) => !prevState);
+  };
+
   return (
     <>
-      {loading && <Loader />}
-      {isLoading && <Loader />}
+      {(loading || relatedLoading || isLoading) && <Loader />}
       {!loading && error && <Error errorMsg={error.message} />}
-      {!loading && !error && (
+      {!loading && relatedError && <Error errorMsg={relatedError.message} />}
+      {!loading && !error && !relatedError && (
         <div className='movie-hunter-container'>
           <section>
             <h1>Movie Hunter</h1>
@@ -78,9 +93,21 @@ const MovieHunter = () => {
             />
           </section>
           {hideDetails && (
-            <MovieData movieData={movieData} handleHideData={handleHideData} />
+            <MovieData
+              movieData={movieData}
+              handleHideData={handleHideData}
+              handleShowRelatedBtn={handleShowRelatedBtn}
+              showRelatedList={showRelatedList}
+            />
           )}
-          <MovieList movies={movies} handleClicOnTile={handleClicOnTile} />
+          {showRelatedList ? (
+            <MovieList
+              movies={relatedMovies}
+              handleClicOnTile={handleClicOnTile}
+            />
+          ) : (
+            <MovieList movies={movies} handleClicOnTile={handleClicOnTile} />
+          )}
         </div>
       )}
     </>

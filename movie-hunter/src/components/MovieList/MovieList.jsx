@@ -1,5 +1,4 @@
 import MovieTile from '../MovieTile/MovieTile';
-import './MovieList.css';
 
 const MovieList = ({ movies, handleClicOnTile }) => {
   return (

@@ -1,17 +1,30 @@
 import './MovieData.css';
-// import Button from '../../common/Button/Button';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
+import { CardActionArea, CardActions } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import StarIcon from '@mui/icons-material/Star';
+import CloseIcon from '@mui/icons-material/Close';
 
-const MovieData = ({ movieData, handleHideData }) => {
+const MovieData = ({
+  movieData,
+  handleHideData,
+  handleShowRelatedBtn,
+  showRelatedList,
+}) => {
   return (
     <aside>
       <Card sx={{ minWidth: 275 }}>
         <CardContent>
+          <Typography className='close-icon-wrapper'>
+            <CardActionArea
+              className='close-icon-action-wrapper'
+              onClick={handleHideData}
+            >
+              <CloseIcon />
+            </CardActionArea>
+          </Typography>
           <Typography
             className='card-date-wrapper'
             color='text.secondary'
@@ -54,41 +67,12 @@ const MovieData = ({ movieData, handleHideData }) => {
           <Button
             className='card-link-btns'
             variant='contained'
-            onClick={handleHideData}
+            onClick={handleShowRelatedBtn}
           >
-            CLOSE
+            {showRelatedList ? 'RESULT' : 'RELATED'}
           </Button>
         </CardActions>
       </Card>
-      {/* <p>{movieData.title}</p>
-      <p>{movieData.actors}</p>
-      <p>{movieData.details}</p>
-      <p>{movieData.genre}</p>
-      <p>{movieData.imdbRatings}</p>
-      <p>{movieData.released}</p>
-      {movieData.imdbID && (
-        <a
-          href={`https://www.imdb.com/title/${movieData.imdbID}/`}
-          target='_blank'
-          rel='noreferrer'
-        >
-          IMDB
-        </a>
-      )}
-      {movieData.wikiID && (
-        <a
-          href={`https://en.wikipedia.org/?curid=${movieData.wikiID}`}
-          target='_blank'
-          rel='noreferrer'
-        >
-          WIKIPEDIA
-        </a>
-      )}
-      <Button
-        className='close-panel-btn'
-        handleClick={handleHideData}
-        title='Close'
-      /> */}
     </aside>
   );
 };
