@@ -1,0 +1,18 @@
+.star-icon {
+    font-size: 1rem!important;
+}
+
+.card-date-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-link-btns-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-link-btns {
+    width: 30%;
+    margin: 0!important;
+}
