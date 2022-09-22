@@ -2,7 +2,7 @@ import './Button.css';
 
 const Button = ({ handleClick, title, className }) => {
   return (
-    <button className={className} onClick={handleClick}>
+    <button data-testid='searchBtn' className={className} onClick={handleClick}>
       {title}
     </button>
   );
